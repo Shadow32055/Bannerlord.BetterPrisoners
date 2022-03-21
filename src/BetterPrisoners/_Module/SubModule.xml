@@ -1,0 +1,26 @@
+<Module>
+  <Name value="Better Prisoners" />
+  <Id value="BetterPrisoners" />
+  <Version value="v2.4.2" />
+  <SingleplayerModule value="true" />
+  <MultiplayerModule value="false" />
+  <DependedModules>
+    <DependedModule Id="Native" />
+    <DependedModule Id="SandBoxCore" />
+    <DependedModule Id="Sandbox" />
+    <DependedModule Id="CustomBattle" />
+    <DependedModule Id="StoryMode" />
+  </DependedModules>
+  <SubModules>
+    <SubModule>
+      <Name value="BetterPrisoners" />
+      <DLLName value="BetterPrisoners.dll" />
+      <SubModuleClassType value="BetterPrisoners.SubModule" />
+      <Tags>
+        <Tag key="DedicatedServerType" value="none" />
+        <Tag key="IsNoRenderModeElement" value="false" />
+      </Tags>
+    </SubModule>
+  </SubModules>
+  <Xmls />
+</Module>

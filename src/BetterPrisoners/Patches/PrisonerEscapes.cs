@@ -5,7 +5,8 @@ using BetterPrisoners.Utils;
 using TaleWorlds.CampaignSystem;
 using System.Collections.Generic;
 using TaleWorlds.CampaignSystem.Actions;
-using TaleWorlds.CampaignSystem.SandBox.CampaignBehaviors;
+using TaleWorlds.CampaignSystem.CampaignBehaviors;
+using TaleWorlds.CampaignSystem.Party;
 
 namespace BetterPrisoners.Patches {
 

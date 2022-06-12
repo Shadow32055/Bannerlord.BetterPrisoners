@@ -1,7 +1,8 @@
 ﻿using HarmonyLib;
 using BetterPrisoners.Utils;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.SandBox.CampaignBehaviors;
+using TaleWorlds.CampaignSystem.CampaignBehaviors;
+using TaleWorlds.CampaignSystem.Party;
 
 namespace BetterPrisoners.Patches {
     [HarmonyPatch(typeof(RansomOfferCampaignBehavior), "ConsiderRansomPrisoner")]

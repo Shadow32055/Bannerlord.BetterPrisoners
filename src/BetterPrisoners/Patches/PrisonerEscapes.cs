@@ -20,6 +20,10 @@ namespace BetterPrisoners.Patches {
             string excapeText = "";
             double chance = 0.0d;
 
+            /*if (hero.PartyBelongedTo.MapFaction == Hero.MainHero.MapFaction) {
+
+            }*/
+
             //Null check on hero
             if (hero != null) {
                 //Make sure the hero is a prisoner, make sure they belong to party and is not the main hero

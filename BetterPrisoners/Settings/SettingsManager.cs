@@ -5,12 +5,12 @@ using System.Text;
 using TaleWorlds.Library;
 using BetterPrisoners.Utils;
 using System.Xml.Serialization;
-using MCM.Abstractions.Settings.Base.Global;
+using MCM.Abstractions.Base.Global;
 
 namespace BetterPrisoners.Settings {
 	public class SettingsManager {
 
-		private static ISettings instance;
+		private static ISettings? instance;
 		private static string path = BasePath.Name + "Modules/" + Helper.modName + "/config.xml";
 		private static FileInfo configFile = new FileInfo(path);
 

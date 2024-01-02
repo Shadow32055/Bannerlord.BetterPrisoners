@@ -1,18 +1,32 @@
-﻿using HarmonyLib;
-using BetterPrisoners.Utils;
+﻿using BetterCore.Utils;
 using BetterPrisoners.Settings;
+using HarmonyLib;
 using TaleWorlds.MountAndBlade;
 
 namespace BetterPrisoners {
-	public class SubModule : MBSubModuleBase {
+    public class SubModule : MBSubModuleBase {
 
-		protected override void OnBeforeInitialModuleScreenSetAsRoot() {
+        public static MCMSettings _settings;
+
+        protected override void OnSubModuleLoad() {
+            base.OnSubModuleLoad();
+
+            Harmony h = new("Bannerlord.Shadow.BetterPrisoners");
+
+            h.PatchAll();
+        }
+
+        protected override void OnBeforeInitialModuleScreenSetAsRoot() {
 			base.OnBeforeInitialModuleScreenSetAsRoot();
+
 			string modName = base.GetType().Assembly.GetName().Name;
 
-			new Harmony("Bannerlord.Shadow." + modName).PatchAll();
-			Helper.SetModName(modName);
-			Helper.settings = SettingsManager.Instance;
-		}
+            Helper.SetModName(modName);
+            if (MCMSettings.Instance is not null) {
+                _settings = MCMSettings.Instance;
+            } else {
+                Logger.SendMessage("Failed to find settings instance!", Severity.High);
+            }
+        }
 	}
 }

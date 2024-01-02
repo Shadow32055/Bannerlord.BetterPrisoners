@@ -4,7 +4,7 @@ using MCM.Abstractions.Base.Global;
 
 namespace BetterPrisoners.Settings {
 
-    internal class MCMSettings : AttributeGlobalSettings<MCMSettings>, ISettings {
+    public class MCMSettings : AttributeGlobalSettings<MCMSettings> {
 
         public override string Id { get { return base.GetType().Assembly.GetName().Name; } }
         public override string DisplayName { get; } = "Better Prisoners";

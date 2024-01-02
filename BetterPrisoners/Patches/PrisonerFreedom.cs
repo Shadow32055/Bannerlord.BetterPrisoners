@@ -1,5 +1,5 @@
 ﻿using HarmonyLib;
-using BetterPrisoners.Utils;
+using BetterCore.Utils;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.Party;
@@ -11,20 +11,20 @@ namespace BetterPrisoners.Patches {
 
             bool proceedToTWCode = true;
 
-            if (Helper.settings.AllowRansoms) {
+            if (SubModule._settings.AllowRansoms) {
                 if (hero != null) {
                     if (hero.IsPrisoner && hero.PartyBelongedToAsPrisoner != null && hero != Hero.MainHero) {
                         if (hero.PartyBelongedToAsPrisoner == PartyBase.MainParty || (hero.PartyBelongedToAsPrisoner.IsSettlement && hero.PartyBelongedToAsPrisoner.Settlement.OwnerClan == Clan.PlayerClan)) {
-                            if (Helper.settings.AutoRejectRansomsForPlayer) {
-                                Helper.DisplayMsg("Auto rejected ransom for " + hero.Name.ToString());
+                            if (SubModule._settings.AutoRejectRansomsForPlayer) {
+                                Logger.SendMessage("Auto rejected ransom for " + hero.Name.ToString(), Severity.Notify);
                                 proceedToTWCode = false;
                             } else {
-                                if (hero.CaptivityStartTime.ElapsedDaysUntilNow < Helper.settings.PrisonerMinDaysToBeImprisoned) {
+                                if (hero.CaptivityStartTime.ElapsedDaysUntilNow < SubModule._settings.PrisonerMinDaysToBeImprisoned) {
                                     proceedToTWCode = false;
                                 }
                             }
                         } else {
-                            if (hero.CaptivityStartTime.ElapsedDaysUntilNow < Helper.settings.PrisonerMinDaysToBeImprisoned) {
+                            if (hero.CaptivityStartTime.ElapsedDaysUntilNow < SubModule._settings.PrisonerMinDaysToBeImprisoned) {
                                 proceedToTWCode = false;
                             }
                         }

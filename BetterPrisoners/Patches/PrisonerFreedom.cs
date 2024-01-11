@@ -1,41 +1,48 @@
-﻿using HarmonyLib;
-using BetterCore.Utils;
+﻿using BetterCore.Utils;
+using BetterPrisoners.Localizations;
+using HarmonyLib;
+using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.Localization;
 
 namespace BetterPrisoners.Patches {
     [HarmonyPatch(typeof(RansomOfferCampaignBehavior), "ConsiderRansomPrisoner")]
     class PrisonerFreedom {
         public static bool Prefix(Hero hero) {
-
             bool proceedToTWCode = true;
+            try {
 
-            if (SubModule._settings.AllowRansoms) {
-                if (hero != null) {
-                    if (hero.IsPrisoner && hero.PartyBelongedToAsPrisoner != null && hero != Hero.MainHero) {
-                        if (hero.PartyBelongedToAsPrisoner == PartyBase.MainParty || (hero.PartyBelongedToAsPrisoner.IsSettlement && hero.PartyBelongedToAsPrisoner.Settlement.OwnerClan == Clan.PlayerClan)) {
-                            if (SubModule._settings.AutoRejectRansomsForPlayer) {
-                                Logger.SendMessage("Auto rejected ransom for " + hero.Name.ToString(), Severity.Notify);
-                                proceedToTWCode = false;
+                if (BetterPrisoners.Settings.AllowRansoms) {
+                    if (hero != null) {
+                        if (hero.IsPrisoner && hero.PartyBelongedToAsPrisoner != null && hero != Hero.MainHero) {
+                            if (hero.PartyBelongedToAsPrisoner == PartyBase.MainParty || (hero.PartyBelongedToAsPrisoner.IsSettlement && hero.PartyBelongedToAsPrisoner.Settlement.OwnerClan == Clan.PlayerClan)) {
+                                if (BetterPrisoners.Settings.AutoRejectRansomsForPlayer) {
+                                    NotifyHelper.ChatMessage(new TextObject(RefValues.AutoRejected) + hero.Name.ToString(), MsgType.Notify);
+                                    proceedToTWCode = false;
+                                } else {
+                                    if (hero.CaptivityStartTime.ElapsedDaysUntilNow < BetterPrisoners.Settings.PrisonerMinDaysToBeImprisoned) {
+                                        proceedToTWCode = false;
+                                    }
+                                }
                             } else {
-                                if (hero.CaptivityStartTime.ElapsedDaysUntilNow < SubModule._settings.PrisonerMinDaysToBeImprisoned) {
+                                if (hero.CaptivityStartTime.ElapsedDaysUntilNow < BetterPrisoners.Settings.PrisonerMinDaysToBeImprisoned) {
                                     proceedToTWCode = false;
                                 }
                             }
-                        } else {
-                            if (hero.CaptivityStartTime.ElapsedDaysUntilNow < SubModule._settings.PrisonerMinDaysToBeImprisoned) {
-                                proceedToTWCode = false;
-                            }
                         }
                     }
-                }
 
-            } else {
-                proceedToTWCode = false;
+                } else {
+                    proceedToTWCode = false;
+                }
+            } catch (Exception e) {
+                NotifyHelper.ReportError(BetterPrisoners.ModName, "RansomOfferCampaignBehavior.ConsiderRansomPrisoner threw exception: " + e);
             }
 
             return proceedToTWCode;
+
         }
     }
 }

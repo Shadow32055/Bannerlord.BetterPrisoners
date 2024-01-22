@@ -1,5 +1,4 @@
 ﻿using BetterCore.Utils;
-using BetterPrisoners.Localizations;
 using HarmonyLib;
 using System;
 using TaleWorlds.CampaignSystem;
@@ -8,7 +7,8 @@ using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Localization;
 
-namespace BetterPrisoners.Patches {
+namespace BetterPrisoners.Patches
+{
 
     [HarmonyPatch(typeof(PrisonerReleaseCampaignBehavior), "DailyHeroTick")]
     class PrisonerEscapes {
@@ -49,7 +49,7 @@ namespace BetterPrisoners.Patches {
 
                             chance = BetterPrisoners.Settings.PrisonerEscapeWhileTravelingChance + MathHelper.GetPercentage(partyStrength, partyStrengthMin);
 
-                            escapeText = new TextObject(RefValues.Escaped);
+                            escapeText = new TextObject(Strings.Escaped);
 
                             // Is hero prisoner part of a settlement?
                         } else if (hero.PartyBelongedToAsPrisoner.IsSettlement) {
@@ -69,9 +69,9 @@ namespace BetterPrisoners.Patches {
                             chance = BetterPrisoners.Settings.PrisonerEscapeWhileInSettlementChance + MathHelper.GetPercentage(partyStrength, partyStrengthMin);
 
                             if (hero.IsFemale) {
-                                escapeText = new TextObject(RefValues.HerMissing);
+                                escapeText = new TextObject(Strings.HerMissing);
                             } else {
-                                escapeText = new TextObject(RefValues.HisMissing);
+                                escapeText = new TextObject(Strings.HisMissing);
                             }
 
                         }
@@ -88,7 +88,7 @@ namespace BetterPrisoners.Patches {
 
                                 //Send message to player for awareness.
                                 if (playersPrisoner)
-                                    NotifyHelper.ChatMessage(hero.Name.ToString() + " " + escapeText, MsgType.Notify);
+                                    NotifyHelper.WriteMessage(hero.Name.ToString() + " " + escapeText, MsgType.Notify);
 
                                 EndCaptivityAction.ApplyByEscape(hero, null);
                                 isReleased = true;
@@ -111,7 +111,7 @@ namespace BetterPrisoners.Patches {
                     }
                 }
             } catch (Exception e) {
-                NotifyHelper.ReportError(BetterPrisoners.ModName, "PrisonerReleaseCampaignBehavior.DailyHeroTick threw exception: " + e);
+                NotifyHelper.WriteError(BetterPrisoners.ModName, "PrisonerReleaseCampaignBehavior.DailyHeroTick threw exception: " + e);
             }
             return proceedToTWCode;
         }

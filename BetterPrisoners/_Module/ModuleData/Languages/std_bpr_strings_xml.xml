@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+	<tags>
+		<tag language="English" />
+	</tags>
+	<strings>
+		<string id="BPR_S5ZGS5" text="Escape"/>
+		<string id="BPR_z5o5Om" text="Relation"/>
+		<string id="BPR_gkoqqv" text="Strength"/>
+		<string id="BPR_sTJY4K" text="Ransoms"/>
+
+		<string id="BPR_TlVRzE" text="Days"/>
+
+		<string id="BPR_2gOOKp" text="Prisoner Escape While Traveling Chance"/>
+		<string id="BPR_AfPZG8" text="Percent chance at escaping while traveling"/>
+
+		<string id="BPR_Kj7W59" text="Prisoner Escape While In Settlement Chance"/>
+		<string id="BPR_O5aDoz" text="Percent chance at escaping while in a settlement"/>
+
+		<string id="BPR_bb8Q2l" text="Prisoner Min Days To Be Imprisoned"/>
+		<string id="BPR_OBRIjZ" text="Minimum days a prisoner will be imprisoned (before escape or ransom is possible)"/>
+
+		<string id="BPR_VNhLkG" text="Prisoner Relation Penalty"/>
+		<string id="BPR_box9IB" text="Amount of relation lost or gained while imprisoned"/>
+
+		<string id="BPR_i3NNk8" text="Prisoner Relation Penalty Applies To Family"/>
+		<string id="BPR_YPYKaY" text="Should relationship loss extended to entire family of prisoner"/>
+
+		<string id="BPR_6HG4O6" text="Factor In Strength For Escape Chance"/>
+		<string id="BPR_dQvTcI" text="Should strength be a factor in escape chance"/>
+
+		<string id="BPR_gjp8UQ" text="Settlement Strength To Prevent Escape"/>
+		<string id="BPR_7AyjCt" text="Minimum strength a settlement must have to prevent escape"/>
+
+		<string id="BPR_8joiph" text="Party Strength To Prevent Escape"/>
+		<string id="BPR_M5PBvw" text="Minimum strength a party must have to prevent escape"/>
+
+		<string id="BPR_b3oZKS" text="Allow Ransoms"/>
+		<string id="BPR_4AAeqG" text="Should ransoms be allowed? if not prisoners should only be released at peace time (or if they escape)"/>
+
+		<string id="BPR_y7WrFu" text="Auto Reject Ransoms For Player"/>
+		<string id="BPR_AK7Dhn" text="Prisoners will not be auto ransomed, if set to false auto ransom will only occur after minimum days to be imprisoned has past"/>
+
+		<string id="BPR_asR46e" text="is missing from his cell"/>
+		<string id="BPR_xcMqlF" text="is missing from her cell"/>
+		<string id="BPR_kr290U" text="has escaped"/>
+		<string id="BPR_bsHsli" text="Auto rejected ransom for "/>
+	</strings>
+</base>
